@@ -90,7 +90,7 @@ class Errors(object):
                 if key in attribute_keys:
                     self.add(key, message)
                 else:
-                    self.add_to_base(message)
+                    self.add_to_base(f'{key}: {message}')
 
     def from_xml(self, xml_string):
         """Grab errors from an XML response.
