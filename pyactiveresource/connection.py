@@ -264,8 +264,10 @@ class Connection(object):
             # Insert basic authentication header
             request.add_header('Authorization', 'Basic ' + self.auth)
         if request.headers:
-            header_string = '\n'.join([':'.join((k, v)) for k, v in
-                                       six.iteritems(request.headers)])
+            request.headers
+            request.headers.pop('X-shopify-access-token')
+            header_string = '\n'.join([':'.join((k, v)) for k, v in filter(lambda h: h[0] != "X-shopify-access-token",
+                                                                           six.iteritems(request.headers))])
             self.log.debug('request-headers:%s', header_string)
         if data:
             request.add_header('Content-Type', self.format.mime_type)
