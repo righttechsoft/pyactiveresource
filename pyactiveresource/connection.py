@@ -285,10 +285,10 @@ class Connection(object):
             try:
                 http_response = self._handle_error(self._urlopen(request))
             except urllib.error.HTTPError as err:
-                self.log.error(err)
+                #self.log.error(err)
                 http_response = self._handle_error(err)
             except urllib.error.URLError as err:
-                self.log.error(err)
+                #self.log.error(err)
                 raise Error(err, url)
             response = Response.from_httpresponse(http_response)
             self.log.debug('Response(code=%d, headers=%s, msg="%s")',
